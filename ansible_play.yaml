@@ -1,0 +1,57 @@
+---
+- hosts: webservers
+  sudo: yes
+  gather_facts: no
+
+
+  tasks:
+  - name: Install nodejs
+    apt: name=nodejs state=present
+ 
+  - name: Install git package for cloning repository
+    become: yes
+    become_method: sudo
+    apt: name=git state=present update_cache=true
+
+ # - name: Install git
+  #  apt: name=git state=present
+
+  - name: Install npm
+    apt: name=npm state=present
+
+  - name: Install nodejs legacy
+    apt: name=nodejs-legacy state=present
+
+  - name: Install forever
+    npm: name=forever global=yes state=present
+
+  - name: Check list of Node.js apps running.
+    command: forever list
+    register: forever_list
+    changed_when: false
+    become_user: vagrant
+
+  - name: git clone CSC-DevOps/App
+    git: repo=https://github.com/CSC-DevOps/App.git
+         dest=/home/vagrant/Appl/ accept_hostkey=yes
+
+  - name: Install NPM packages based on package.json
+    npm: path=/home/vagrant/Appl/
+
+  - name: start the main.js forever
+    command: forever start /home/vagrant/Appl/main.js
+    when: "forever_list.stdout.find('/home/vagrant/Appl/main.js') == -1"
+    become_user: vagrant
+
+  - name: Install bash, openssl, openssh-client, and openssh-server
+    become: yes
+    become_method: sudo
+    apt: name={{item}} state=latest
+    with_items:
+     - bash
+     - openssl
+     - openssh-client
+     - openssh-server
+
+  - name: Remove content in /tmp/*
+    file: state=absent path=/tmp/*
