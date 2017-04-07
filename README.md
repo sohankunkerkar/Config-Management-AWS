@@ -1,13 +1,11 @@
 # HW5- Software Engineering
 
-####Screencast [link](https://www.youtube.com/watch?v=U5i-X93vHfE)
+<b>Playbook files:</b>
 
-####Playbook files:
+1. [Ansible Playbook for setting up the task] (https://github.com/sohankunkerkar/SE_HW5/blob/master/ansible_play.yaml)
+2. [EC2 Ansible Playbook] (https://github.com/sohankunkerkar/SE_HW5/blob/master/amazon.yaml)
 
-1. [Ansible Playbook for setting up the task] (https://github.ncsu.edu/sakunker/sakunker_HW5/blob/master/ansible_play.yaml)
-2. [EC2 Ansible Playbook] (https://github.ncsu.edu/sakunker/sakunker_HW5/blob/master/amazon.yaml)
-
-##Steps for running ansible playbooks
+<b>Steps for running ansible playbooks</b><br>
 
 1. First create a vagrantfile by executing the followng command i.e. `vagrant init`
 2. Edit the contents as follows for creating the two VMs ansible and web:
@@ -40,9 +38,9 @@ sudo apt-get -y install git make vim python-dev python-pip libffi-dev libssl-dev
 5. Install ansible
 `sudo pip install ansible`
 
-6. Create the required [inventory] (https://github.ncsu.edu/sakunker/sakunker_HW5/blob/master/inventory) and [ansible config] (https://github.ncsu.edu/sakunker/sakunker_HW5/blob/master/ansible.cfg) files.
-7. Create the [playbook] (https://github.ncsu.edu/sakunker/sakunker_HW5/blob/master/ansible_play.yaml) with the tasks.
+6. Create the required [inventory] (https://github.com/sohankunkerkar/SE_HW5/blob/master/inventory) and [ansible config] (https://github.com/sohankunkerkar/SE_HW5/blob/master/ansible.cfg) files.
+7. Create the [playbook] (https://github.com/sohankunkerkar/SE_HW5/blob/master/ansible_play.yaml) with the tasks.
 8. Then execute the ansible playbook.
 9. See if all the tasks have been completed in the command prompt.
 10. Check in the slave machine if the forvever is running by executing following command  `forever start`
-11. Then run [Ec2 Playbook ](https://github.ncsu.edu/sakunker/sakunker_HW5/blob/master/amazon.yaml) to see if the virtual machine is getting created on EC2.
+11. Then run [Ec2 Playbook ](https://github.com/sohankunkerkar/SE_HW5/blob/master/amazon.yaml) to see if the virtual machine is getting created on EC2.
